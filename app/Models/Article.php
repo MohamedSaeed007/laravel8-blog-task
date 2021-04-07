@@ -10,7 +10,7 @@ class Article extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title','description','content','image','published_at','user_id'
+        'title','description','content','image','status','user_id'
     ];
 
     public function categories(){
@@ -27,5 +27,13 @@ class Article extends Model
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function hasTag($tagId){
+        return in_array($tagId,$this->tags->pluck('id')->toArray());
+    }
+
+    public function hasCategory($categoryId){
+        return in_array($categoryId,$this->categories->pluck('id')->toArray());
     }
 }

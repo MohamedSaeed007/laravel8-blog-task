@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 /*
@@ -20,4 +23,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('home', [HomeController::class, 'userHome'])->name('home');
-Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('auth.admin');
+
+
+Route::middleware('auth.admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('articles', ArticleController::class)->except('show');
+    Route::resource('tags', TagController::class)->except('show');
+    Route::resource('categories', CategoryController::class)->except('show');
+});
