@@ -62,8 +62,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('users.edit') }}">
+                                        My Profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                 document.getElementById('logout-form').submit();">
+                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -80,30 +83,37 @@
 
         <main class="py-4">
             <div class="container">
-                @if(session()->has('success'))
+                @if (session()->has('success'))
                     <div class="alert alert-success">
-                        {{session()->get('success')}}
+                        {{ session()->get('success') }}
                     </div>
                 @endif
-                @if(session()->has('error'))
+                @if (session()->has('error'))
                     <div class="alert alert-danger">
-                        {{session()->get('error')}}
+                        {{ session()->get('error') }}
                     </div>
                 @endif
                 <div class="row justify-content-center">
-                    <div class="col-md-3">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <a href="{{ route('admin.articles.index') }}">Articles</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{ route('admin.categories.index') }}">Categories</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{ route('admin.tags.index') }}">Tags</a>
-                            </li>
-                        </ul>
-                    </div>
+                   @auth
+                    @if (Auth::user()->role == 'admin')
+                        <div class="col-md-3">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="{{ route('admin.users.index') }}">Users</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{ route('admin.articles.index') }}">Articles</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{ route('admin.categories.index') }}">Categories</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{ route('admin.tags.index') }}">Tags</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
+                    @endauth
                     <div class="col-md-9">
                         @yield('content')
                     </div>
