@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
@@ -24,12 +26,8 @@ class ArticleController extends Controller
         return view('admin.articles.create')->with('categories', $categories)->with('tags', $tags);
     }
 
-    public function store(Request $request)
+    public function store(CreateArticleRequest $request)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
         $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('uploads/articles_images'), $imageName);
 
@@ -62,7 +60,7 @@ class ArticleController extends Controller
         return view('admin.articles.edit')->with('article',$article)->with('categories', $categories)->with('tags', $tags);
     }
 
-    public function update(Request $request, Article $article)
+    public function update(UpdateArticleRequest $request, Article $article)
     {
         $data = $request->only(['title', 'description', 'status', 'content']);
 
