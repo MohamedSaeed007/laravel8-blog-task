@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Tag;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TagFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Tag::class;
+    protected $model = Comment::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,9 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
+            'content' => $this->faker->sentence(4),
+            'user_id' => $this->faker->numberBetween(1,2),
+            'article_id' => $this->faker->numberBetween(1,10),
         ];
     }
 }

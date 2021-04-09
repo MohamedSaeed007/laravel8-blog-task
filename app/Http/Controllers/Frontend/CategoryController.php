@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $articles = $category->articles->where('status','published');
+        $articles = $category->articles()->where('status','published')->paginate(5);
         return view('frontend.category')->with('articles', $articles)
         ->with('categories',Category::all())
         ->with('tags',Tag::all());

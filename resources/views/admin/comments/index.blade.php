@@ -1,27 +1,29 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a href="{{ route('admin.tags.create') }}" class="btn btn-success">Add Tag</a>
-    </div>
+    
     <div class="card">
-        <div class="card-header">Tags</div>
+        <div class="card-header">Comments</div>
         <div class="card-body">
-            @if ($tags->count() > 0)
+            @if ($comments->count() > 0)
                 <table class="table text-center">
                     <thead>
-                        <th>Name</th>
+                        <th>Comment</th>
+                        <th>User Name</th>
+                        <th>Article Title</th>
                         <th colspan="2">Action</th>
                     </thead>
                     <tbody>
-                        @foreach ($tags as $tag)
+                        @foreach ($comments as $comment)
                             <tr>
-                                <td>{{ $tag->name }}</td>
+                                <td>{{ $comment->content }}</td>
+                                <td>{{ $comment->user->name }}</td>
+                                <td>{{ $comment->article->title }}</td>
                                 <td>
-                                    <a href="{{ route('admin.tags.edit', $tag) }}"
+                                    <a href="{{ route('admin.comments.edit', $comment) }}"
                                         class="btn btn-info text-light">Edit</a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('admin.tags.destroy', $tag) }}" method="post">
+                                    <form action="{{ route('admin.comments.destroy', $comment) }}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">
@@ -34,9 +36,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{$tags->links('pagination::bootstrap-4')}}
+                {{$comments->links('pagination::bootstrap-4')}}
             @else
-                <h3 class="text-center">No tags Yet</h3>
+                <h3 class="text-center">No comments Yet</h3>
             @endif
         </div>
     </div>

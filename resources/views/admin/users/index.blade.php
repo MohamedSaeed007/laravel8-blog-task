@@ -30,6 +30,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{$users->links('pagination::bootstrap-4')}}
             @else
                 <h3 class="text-center">No Users Yet</h3>
             @endif

@@ -56,6 +56,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$articles->links('pagination::bootstrap-4')}}
             @else
                 <h3 class="text-center">No articles Yet</h3>
             @endif

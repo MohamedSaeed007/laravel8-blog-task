@@ -43,7 +43,7 @@
                                             <ul class="post-info">
                                                 <li><a href="#">{{ $article->user->name }}</a></li>
                                                 <li><a href="#">{{ $article->created_at }}</a></li>
-                                                <li><a href="#">12 Comments</a></li>
+                                                <li><a href="#">{{ $article->comments->count() }} Comments</a></li>
                                             </ul>
                                             <p>{{ $article->description }}</p>
                                             <div class="post-options">
@@ -74,9 +74,7 @@
 
 
                             <div class="col-lg-12">
-                                <div class="main-button">
-                                    <a href="blog.html">View All Posts</a>
-                                </div>
+                                {{$articles->links('pagination::bootstrap-4')}}
                             </div>
                         </div>
                     </div>

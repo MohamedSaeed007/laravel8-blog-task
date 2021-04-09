@@ -10,10 +10,9 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {
    
-
     public function show(Tag $tag)
     {
-        $articles = $tag->articles->where('status','published');
+        $articles = $tag->articles()->where('status','published')->paginate(5);
         return view('frontend.tag')->with('articles', $articles)
         ->with('categories',Category::all())
         ->with('tags',Tag::all());

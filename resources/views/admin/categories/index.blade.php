@@ -34,6 +34,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$categories->links('pagination::bootstrap-4')}}
             @else
                 <h3 class="text-center">No categories Yet</h3>
             @endif

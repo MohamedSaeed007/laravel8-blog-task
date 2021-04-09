@@ -74,9 +74,7 @@
 
 
                             <div class="col-lg-12">
-                                <div class="main-button">
-                                    <a href="blog.html">View All Posts</a>
-                                </div>
+                                {{$articles->links('pagination::bootstrap-4')}}
                             </div>
                         </div>
                     </div>

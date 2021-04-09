@@ -21,8 +21,15 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+        $filePath = public_path('uploads/articles_images');
+
         return [
-            //
+            'title' => $this->faker->sentence(6),
+        'description' => $this->faker->sentence(4),
+        'content' => $this->faker->paragraph(6),
+        'status' => 'published',
+        'user_id' => '2',
+        'image' => $this->faker->image($filePath,300,300,null,false),
         ];
     }
 }
