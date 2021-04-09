@@ -10,3 +10,11 @@
 - run "npm install"
 - run "npm run dev"
 - run "php artisan serve"
+
+## Admin Acccount
+Email: admin@admin.com
+Password: 123456
+
+## User Account
+Email: user@user.com
+Password: 123456
