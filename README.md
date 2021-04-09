@@ -1,17 +1,10 @@
 ## this is a laravel 8 task to develop a small blog system
 
 ## steps to run the project
+- clone the project using "git clone https://github.com/MohamedSaeed007/laravel8-blog-task.git" or download it as ZIP file and extract it into any local server you use
+- cp .env.example .env
 - create a database and put the credentials of it in ENV file
 - run "composer install"
 - run "php artisan key:generate"
 - run "php artisan migrate --seed"
 - run "php artisan serve"
-
-## steps to develop this project
-- structrue the project modules and necessary relationships in my mind
-- add the necessary models, migrations and relationships
-- develop multi auth system
-- add the frontend theme and divide it into small components
-- strat working with the bussiness logic of the app in controllers files
-- add validation rules in sepereate request classes
-- add some enhancement to the system like pagination
