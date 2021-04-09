@@ -7,4 +7,6 @@
 - run "composer install"
 - run "php artisan key:generate"
 - run "php artisan migrate --seed"
+- run "npm install"
+- run "npm run dev"
 - run "php artisan serve"
